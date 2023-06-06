@@ -78,7 +78,7 @@
       // 计算勾选的checkbox值合集
       checkboxString: function () {
         let str = this.checkboxList.join();
-        return str == '' ? '*' : str;
+        return str === '' ? '*' : str;
       },
     },
     watch: {
@@ -124,19 +124,19 @@
       },
       // 周期两个值变化时
       cycleChange() {
-        if (this.radioValue == '2') {
+        if (this.radioValue === 2) {
           this.$emit('update', 'mouth', this.cycleTotal);
         }
       },
       // 平均两个值变化时
       averageChange() {
-        if (this.radioValue == '3') {
+        if (this.radioValue === 3) {
           this.$emit('update', 'mouth', this.averageTotal);
         }
       },
       // checkbox值变化时
       checkboxChange() {
-        if (this.radioValue == '4') {
+        if (this.radioValue === 4) {
           this.$emit('update', 'mouth', this.checkboxString);
         }
       },

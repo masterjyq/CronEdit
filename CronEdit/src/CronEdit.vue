@@ -278,10 +278,10 @@
             insVlaue = 4;
             this.$refs[refName].checkboxList = value.split(',');
           }
-        } else if (name == 'day') {
+        } else if (name === 'day') {
           if (value === '*') {
             insVlaue = 1;
-          } else if (value == '?') {
+          } else if (value === '?') {
             insVlaue = 2;
           } else if (value.indexOf('-') > -1) {
             let indexArr = value.split('-');
@@ -309,10 +309,10 @@
             this.$refs[refName].checkboxList = value.split(',');
             insVlaue = 7;
           }
-        } else if (name == 'week') {
+        } else if (name === 'week') {
           if (value === '*') {
             insVlaue = 1;
-          } else if (value == '?') {
+          } else if (value === '?') {
             insVlaue = 2;
           } else if (value.indexOf('-') > -1) {
             let indexArr = value.split('-');
