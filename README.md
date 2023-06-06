@@ -1,5 +1,5 @@
 # CronEdit
-基于vben-admin 的 Cron 表达式编辑器
+基于Vben Admin 的 Cron 表达式编辑器
 
 ## 使用方式
 可以直接在FormSchema中使用
