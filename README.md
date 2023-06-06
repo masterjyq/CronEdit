@@ -2,6 +2,7 @@
 基于Vben Admin 的 Cron 表达式编辑器
 
 ## 使用方式
+将文件夹放置到 `src/components` 目录下
 可以直接在FormSchema中使用
 ```tsx
 import { useComponentRegister } from '/@/components/Form';
