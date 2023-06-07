@@ -188,7 +188,6 @@
     },
     methods: {
       openModal() {
-        console.log(this.showModal);
         this.showModal = true;
       },
       okModal() {
