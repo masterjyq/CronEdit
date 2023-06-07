@@ -162,7 +162,10 @@
       },
     },
     watch: {
-      value: 'resolveExp',
+      value(val) {
+        this.contabValueRes = val
+        this.resolveExp()
+      },
       hideComponent(_) {
         // 隐藏部分组件
       },

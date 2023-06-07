@@ -1,28 +1,22 @@
 <template>
-  <Form>
     <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 分钟，允许的通配符[, - * /] </Radio>
-      </FormItem>
+      <a-space direction="vertical">
 
-      <FormItem>
+        <Radio :value="1"> 分钟，允许的通配符[, - * /] </Radio>
+
         <Radio :value="2">
           周期从
           <InputNumber v-model:value="cycle01" :min="0" :max="60" /> -
           <InputNumber v-model:value="cycle02" :min="0" :max="60" /> 分钟
         </Radio>
-      </FormItem>
 
-      <FormItem>
         <Radio :value="3">
           从
           <InputNumber v-model:value="average01" :min="0" :max="60" /> 分钟开始，每
           <InputNumber v-model:value="average02" :min="0" :max="60" /> 分钟执行一次
         </Radio>
-      </FormItem>
-
-      <FormItem>
-        <Radio :value="4" />
+        <div>
+          <Radio :value="4" />
         指定
         <Select
           v-model:value="checkboxList"
@@ -32,9 +26,10 @@
           @change="checkboxChange"
           :options="[...Array(59)].map((_, i) => ({ value: i }))"
         />
-      </FormItem>
+        </div>
+        </a-space>
     </RadioGroup>
-  </Form>
+    
 </template>
 
 <script>
@@ -132,3 +127,9 @@
     },
   };
 </script>
+<style scoped>
+  .ant-input-number {
+    width: 80px;
+    max-width: 100px;
+  }
+</style>

@@ -143,3 +143,9 @@
     },
   };
 </script>
+<style scoped>
+  .ant-input-number {
+    width: 80px;
+    max-width: 100px;
+  }
+</style>

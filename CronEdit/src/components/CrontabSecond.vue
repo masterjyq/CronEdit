@@ -1,27 +1,20 @@
 <template>
-  <Form size="small">
-    <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 秒，允许的通配符[, - * /] </Radio>
-      </FormItem>
+  <RadioGroup v-model:value="radioValue">
+    <a-space direction="vertical">
+      <Radio :value="1"> 秒，允许的通配符[, - * /] </Radio>
 
-      <FormItem>
-        <Radio :value="2">
-          周期从
-          <InputNumber v-model:value="cycle01" :min="0" :max="60" /> -
-          <InputNumber v-model:value="cycle02" :min="0" :max="60" /> 秒
-        </Radio>
-      </FormItem>
+      <Radio :value="2">
+        周期从
+        <InputNumber v-model:value="cycle01" :min="0" :max="60" /> -
+        <InputNumber v-model:value="cycle02" :min="0" :max="60" /> 秒
+      </Radio>
 
-      <FormItem>
-        <Radio :value="3">
-          从
-          <InputNumber v-model:value="average01" :min="0" :max="60" /> 秒开始，每
-          <InputNumber v-model:value="average02" :min="0" :max="60" /> 秒执行一次
-        </Radio>
-      </FormItem>
-
-      <FormItem>
+      <Radio :value="3">
+        从
+        <InputNumber v-model:value="average01" :min="0" :max="60" /> 秒开始，每
+        <InputNumber v-model:value="average02" :min="0" :max="60" /> 秒执行一次
+      </Radio>
+      <div>
         <Radio :value="4" />
         指定
         <Select
@@ -32,9 +25,9 @@
           @change="checkboxChange"
           :options="[...Array(59)].map((_, i) => ({ value: i }))"
         />
-      </FormItem>
-    </RadioGroup>
-  </Form>
+      </div>
+    </a-space>
+  </RadioGroup>
 </template>
 
 <script>
@@ -146,3 +139,9 @@
     },
   };
 </script>
+<style scoped>
+  .ant-input-number {
+    width: 80px;
+    max-width: 100px;
+  }
+</style>

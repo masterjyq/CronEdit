@@ -10,6 +10,9 @@
       </FormItem>
 
       <FormItem>
+        <Row>
+          
+        </Row>
         <Radio :value="3">
           周期从
           <InputNumber v-model:value="cycle01" :min="0" :max="31" />
@@ -193,3 +196,9 @@
     },
   };
 </script>
+<style scoped>
+  .ant-input-number {
+    width: 80px;
+    max-width: 100px;
+  }
+</style>
