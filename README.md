@@ -23,3 +23,11 @@ export const formSchema: FormSchema[] = [
 ```
 <CronEdit v-model:value="cronexpression">
 ```
+
+## 效果
+### 编辑
+![image](https://github.com/masterjyq/CronEdit/assets/29848365/62473676-22e8-4e67-a8f9-4cc9ed7a0b29)
+
+### 打开
+![image](https://github.com/masterjyq/CronEdit/assets/29848365/7312ef1d-db34-41af-99c4-57d4291ef384)
+
