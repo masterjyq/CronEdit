@@ -45,7 +45,7 @@
       SelectOption: Select.Option,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'radioParent'],
+    props: ['check', 'radioParent', 'resolve'],
     data() {
       return {
         radioValue: 1,
@@ -84,6 +84,9 @@
       radioParent() {
         this.radioValue = this.radioParent;
       },
+    },
+    mounted: function () {
+      this.resolve('second')
     },
     methods: {
       // 单选按钮值变化时

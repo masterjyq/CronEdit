@@ -1,31 +1,25 @@
 <template>
-  <Form>
-    <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 小时，允许的通配符[, - * /] </Radio>
-      </FormItem>
+  <RadioGroup v-model:value="radioValue">
+    <a-space direction="vertical">
+      <Radio :value="1"> 小时，允许的通配符[, - * /] </Radio>
 
-      <FormItem>
-        <Radio :value="2">
-          周期从
-          <InputNumber v-model:value="cycle01" :min="0" :max="60" />
-          -
-          <InputNumber v-model:value="cycle02" :min="0" :max="60" />
-          小时
-        </Radio>
-      </FormItem>
+      <Radio :value="2">
+        周期从
+        <InputNumber v-model:value="cycle01" :min="0" :max="60" />
+        -
+        <InputNumber v-model:value="cycle02" :min="0" :max="60" />
+        小时
+      </Radio>
 
-      <FormItem>
-        <Radio :value="3">
-          从
-          <InputNumber v-model:value="average01" :min="0" :max="60" />
-          小时开始，每
-          <InputNumber v-model:value="average02" :min="0" :max="60" />
-          小时执行一次
-        </Radio>
-      </FormItem>
+      <Radio :value="3">
+        从
+        <InputNumber v-model:value="average01" :min="0" :max="60" />
+        小时开始，每
+        <InputNumber v-model:value="average02" :min="0" :max="60" />
+        小时执行一次
+      </Radio>
 
-      <FormItem>
+      <div>
         <Radio :value="4" />
         指定
         <Select
@@ -36,9 +30,9 @@
           @change="checkboxChange"
           :options="[...Array(23)].map((_, i) => ({ value: i }))"
         />
-      </FormItem>
-    </RadioGroup>
-  </Form>
+      </div>
+    </a-space>
+  </RadioGroup>
 </template>
 
 <script>
@@ -56,7 +50,7 @@
       SelectOption: Select.Option,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'cron'],
+    props: ['check', 'cron', 'resolve'],
     data() {
       return {
         radioValue: 1,
@@ -92,6 +86,9 @@
       cycleTotal: 'cycleChange',
       averageTotal: 'averageChange',
       checkboxString: 'checkboxChange',
+    },
+    mounted: function () {
+      this.resolve('hour');
     },
     methods: {
       // 单选按钮值变化时

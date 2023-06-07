@@ -47,7 +47,7 @@
       SelectOption: Select.Option,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'cron'],
+    props: ['check', 'cron', 'resolve'],
     data() {
       return {
         radioValue: 1,
@@ -83,6 +83,9 @@
       cycleTotal: 'cycleChange',
       averageTotal: 'averageChange',
       checkboxString: 'checkboxChange',
+    },
+    mounted: function () {
+      this.resolve('min')
     },
     methods: {
       // 单选按钮值变化时

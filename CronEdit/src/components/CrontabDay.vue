@@ -1,50 +1,35 @@
 <template>
-  <Form>
-    <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 日，允许的通配符[, - * / L M] </Radio>
-      </FormItem>
+  <RadioGroup v-model:value="radioValue">
+    <a-space direction="vertical">
+      <Radio :value="1"> 日，允许的通配符[, - * / L M] </Radio>
 
-      <FormItem>
-        <Radio :value="2"> 不指定 </Radio>
-      </FormItem>
+      <Radio :value="2"> 不指定 </Radio>
 
-      <FormItem>
-        <Row>
-          
-        </Row>
-        <Radio :value="3">
-          周期从
-          <InputNumber v-model:value="cycle01" :min="0" :max="31" />
-          -
-          <InputNumber v-model:value="cycle02" :min="0" :max="31" />
-          日
-        </Radio>
-      </FormItem>
+      <Radio :value="3">
+        周期从
+        <InputNumber v-model:value="cycle01" :min="0" :max="31" />
+        -
+        <InputNumber v-model:value="cycle02" :min="0" :max="31" />
+        日
+      </Radio>
 
-      <FormItem>
-        <Radio :value="4">
-          从
-          <InputNumber v-model:value="average01" :min="0" :max="31" />
-          号开始，每
-          <InputNumber v-model:value="average02" :min="0" :max="31" />
-          日执行一次
-        </Radio>
-      </FormItem>
+      <Radio :value="4">
+        从
+        <InputNumber v-model:value="average01" :min="0" :max="31" />
+        号开始，每
+        <InputNumber v-model:value="average02" :min="0" :max="31" />
+        日执行一次
+      </Radio>
 
-      <FormItem>
-        <Radio :value="5">
-          每月
-          <InputNumber v-model:value="workday" :min="0" :max="31" />
-          号最近的那个工作日
-        </Radio>
-      </FormItem>
+      <Radio :value="5">
+        每月
+        <InputNumber v-model:value="workday" :min="0" :max="31" />
+        号最近的那个工作日
+      </Radio>
 
-      <FormItem>
-        <Radio :value="6"> 本月最后一天 </Radio>
-      </FormItem>
+      <Radio :value="6"> 本月最后一天 </Radio>
 
-      <FormItem>
+      <div>
         <Radio :value="7" />
         指定
         <Select
@@ -55,9 +40,9 @@
           @change="checkboxChange"
           :options="[...Array(30)].map((_, i) => ({ value: i + 1 }))"
         />
-      </FormItem>
-    </RadioGroup>
-  </Form>
+      </div>
+    </a-space>
+  </RadioGroup>
 </template>
 
 <script>
@@ -75,7 +60,7 @@
       SelectOption: Select.Option,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'cron'],
+    props: ['check', 'cron', 'resolve'],
     data() {
       return {
         radioValue: 1,
@@ -118,6 +103,9 @@
       averageTotal: 'averageChange',
       workdayCheck: 'workdayChange',
       checkboxString: 'checkboxChange',
+    },
+    mounted: function () {
+      this.resolve('day');
     },
     methods: {
       // 单选按钮值变化时

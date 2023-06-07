@@ -1,27 +1,21 @@
 <template>
-  <Form>
-    <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 月，允许的通配符[, - * /] </Radio>
-      </FormItem>
+  <RadioGroup v-model:value="radioValue">
+    <a-space direction="vertical">
+      <Radio :value="1"> 月，允许的通配符[, - * /] </Radio>
 
-      <FormItem>
-        <Radio :value="2">
-          周期从
-          <InputNumber v-model:value="cycle01" :min="1" :max="12" /> -
-          <InputNumber v-model:value="cycle02" :min="1" :max="12" /> 月
-        </Radio>
-      </FormItem>
+      <Radio :value="2">
+        周期从
+        <InputNumber v-model:value="cycle01" :min="1" :max="12" /> -
+        <InputNumber v-model:value="cycle02" :min="1" :max="12" /> 月
+      </Radio>
 
-      <FormItem>
-        <Radio :value="3">
-          从
-          <InputNumber v-model:value="average01" :min="1" :max="12" /> 月开始，每
-          <InputNumber v-model:value="average02" :min="1" :max="12" /> 月月执行一次
-        </Radio>
-      </FormItem>
+      <Radio :value="3">
+        从
+        <InputNumber v-model:value="average01" :min="1" :max="12" /> 月开始，每
+        <InputNumber v-model:value="average02" :min="1" :max="12" /> 月月执行一次
+      </Radio>
 
-      <FormItem>
+      <div>
         <Radio :value="4" />
         指定
         <Select
@@ -32,9 +26,9 @@
           @change="checkboxChange"
           :options="[...Array(11)].map((_, i) => ({ value: i + 1 }))"
         />
-      </FormItem>
-    </RadioGroup>
-  </Form>
+      </div>
+    </a-space>
+  </RadioGroup>
 </template>
 
 <script>
@@ -50,7 +44,7 @@
       Select,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'cron'],
+    props: ['check', 'cron', 'resolve'],
     data() {
       return {
         radioValue: 1,
@@ -88,6 +82,9 @@
       cycleTotal: 'cycleChange',
       averageTotal: 'averageChange',
       checkboxString: 'checkboxChange',
+    },
+    mounted: function () {
+      this.resolve('mouth');
     },
     methods: {
       // 单选按钮值变化时

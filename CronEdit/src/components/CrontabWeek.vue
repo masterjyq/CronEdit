@@ -1,38 +1,28 @@
 <template>
-  <Form>
-    <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 周，允许的通配符[, - * / L #] </Radio>
-      </FormItem>
+  <RadioGroup v-model:value="radioValue">
+    <a-space direction="vertical">
+      <Radio :value="1"> 周，允许的通配符[, - * / L #] </Radio>
 
-      <FormItem>
-        <Radio :value="2"> 不指定 </Radio>
-      </FormItem>
+      <Radio :value="2"> 不指定 </Radio>
 
-      <FormItem>
-        <Radio :value="3">
-          周期从星期
-          <InputNumber v-model:value="cycle01" :min="1" :max="7" /> -
-          <InputNumber v-model:value="cycle02" :min="1" :max="7" />
-        </Radio>
-      </FormItem>
+      <Radio :value="3">
+        周期从星期
+        <InputNumber v-model:value="cycle01" :min="1" :max="7" /> -
+        <InputNumber v-model:value="cycle02" :min="1" :max="7" />
+      </Radio>
 
-      <FormItem>
-        <Radio :value="4">
-          第
-          <InputNumber v-model:value="average01" :min="1" :max="4" /> 周的星期
-          <InputNumber v-model:value="average02" :min="1" :max="7" />
-        </Radio>
-      </FormItem>
+      <Radio :value="4">
+        第
+        <InputNumber v-model:value="average01" :min="1" :max="4" /> 周的星期
+        <InputNumber v-model:value="average02" :min="1" :max="7" />
+      </Radio>
 
-      <FormItem>
-        <Radio :value="5">
-          本月最后一个星期
-          <InputNumber v-model:value="weekday" :min="1" :max="7" />
-        </Radio>
-      </FormItem>
+      <Radio :value="5">
+        本月最后一个星期
+        <InputNumber v-model:value="weekday" :min="1" :max="7" />
+      </Radio>
 
-      <FormItem>
+      <div>
         <Radio :value="6" />
         指定
         <Select
@@ -46,19 +36,17 @@
             item
           }}</SelectOption>
         </Select>
-      </FormItem>
-    </RadioGroup>
-  </Form>
+      </div>
+    </a-space>
+  </RadioGroup>
 </template>
 
 <script>
-  import { Form, Radio, Input, InputNumber, Select } from 'ant-design-vue';
+  import { Radio, Input, InputNumber, Select } from 'ant-design-vue';
 
   export default {
     name: 'CrontabWeek',
     components: {
-      Form,
-      FormItem: Form.Item,
       Radio,
       Input,
       InputNumber,
@@ -66,7 +54,7 @@
       SelectOption: Select.Option,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'cron'],
+    props: ['check', 'cron', 'resolve'],
     data() {
       return {
         radioValue: 2,
@@ -110,6 +98,9 @@
       averageTotal: 'averageChange',
       weekdayCheck: 'weekdayChange',
       checkboxString: 'checkboxChange',
+    },
+    mounted: function () {
+      this.resolve('week');
     },
     methods: {
       // 单选按钮值变化时

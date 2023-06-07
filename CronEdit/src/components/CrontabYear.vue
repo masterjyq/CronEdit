@@ -1,31 +1,23 @@
 <template>
-  <Form>
-    <RadioGroup v-model:value="radioValue">
-      <FormItem>
-        <Radio :value="1"> 不填，允许的通配符[, - * /] </Radio>
-      </FormItem>
+  <RadioGroup v-model:value="radioValue">
+    <a-space direction="vertical">
+      <Radio :value="1"> 不填，允许的通配符[, - * /] </Radio>
 
-      <FormItem>
-        <Radio :value="2"> 每年 </Radio>
-      </FormItem>
+      <Radio :value="2"> 每年 </Radio>
 
-      <FormItem>
-        <Radio :value="3">
-          周期从
-          <InputNumber v-model:value="cycle01" :min="fullYear" /> -
-          <InputNumber v-model:value="cycle02" :min="fullYear" />
-        </Radio>
-      </FormItem>
+      <Radio :value="3">
+        周期从
+        <InputNumber v-model:value="cycle01" :min="fullYear" /> -
+        <InputNumber v-model:value="cycle02" :min="fullYear" />
+      </Radio>
 
-      <FormItem>
-        <Radio :value="4">
-          从
-          <InputNumber v-model:value="average01" :min="fullYear" /> 年开始，每
-          <InputNumber v-model:value="average02" :min="fullYear" /> 年执行一次
-        </Radio>
-      </FormItem>
+      <Radio :value="4">
+        从
+        <InputNumber v-model:value="average01" :min="fullYear" /> 年开始，每
+        <InputNumber v-model:value="average02" :min="1" /> 年执行一次
+      </Radio>
 
-      <FormItem>
+      <div>
         <Radio :value="5" />
         指定
         <Select
@@ -36,19 +28,17 @@
           @change="checkboxChange"
           :options="[...Array(8)].map((_, i) => ({ value: i + fullYear }))"
         />
-      </FormItem>
-    </RadioGroup>
-  </Form>
+      </div>
+    </a-space>
+  </RadioGroup>
 </template>
 
 <script>
-  import { Form, Radio, Input, InputNumber, Select } from 'ant-design-vue';
+  import { Radio, Input, InputNumber, Select } from 'ant-design-vue';
 
   export default {
     name: 'CrontabYear',
     components: {
-      Form,
-      FormItem: Form.Item,
       Radio,
       Input,
       InputNumber,
@@ -56,7 +46,7 @@
       SelectOption: Select.Option,
       RadioGroup: Radio.Group,
     },
-    props: ['check', 'mouth', 'cron'],
+    props: ['check', 'mouth', 'cron', 'resolve'],
     data() {
       return {
         fullYear: 0,
@@ -97,6 +87,7 @@
     mounted: function () {
       // 仅获取当前年份
       this.fullYear = Number(new Date().getFullYear());
+      this.resolve('week');
     },
     methods: {
       // 单选按钮值变化时

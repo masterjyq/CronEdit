@@ -7,13 +7,18 @@
     </InputSearch>
     <BasicModal :visible="showModal" @ok="okModal" @cancel="cancelModal" title="表达式">
       <Tabs type="border-card">
-        <TabPane key="second" tab="秒" v-if="shouldHide('second')">
-          <CrontabSecond @update="updateContabValue" :check="checkNumber" ref="cronsecond" />
+        <TabPane key="second" tab="秒" v-if="shouldHide('second')" forceRender>
+          <CrontabSecond 
+          @update="updateContabValue" 
+          :check="checkNumber"
+          :resolve="resolveExpByName"
+          ref="cronsecond" />
         </TabPane>
         <TabPane key="min" tab="分钟" v-if="shouldHide('min')">
           <CrontabMin
             @update="updateContabValue"
             :check="checkNumber"
+            :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronmin"
           />
@@ -23,6 +28,7 @@
           <CrontabHour
             @update="updateContabValue"
             :check="checkNumber"
+            :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronhour"
           />
@@ -32,33 +38,37 @@
           <CrontabDay
             @update="updateContabValue"
             :check="checkNumber"
+            :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronday"
           />
         </TabPane>
 
-        <TabPane key="mouth" tab="月" v-if="shouldHide('mouth')">
+        <TabPane key="mouth" tab="月" v-if="shouldHide('mouth')" forceRender>
           <CrontabMouth
             @update="updateContabValue"
             :check="checkNumber"
+            :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronmouth"
           />
         </TabPane>
 
-        <TabPane key="week" tab="周" v-if="shouldHide('week')">
+        <TabPane key="week" tab="周" v-if="shouldHide('week')" forceRender>
           <CrontabWeek
             @update="updateContabValue"
             :check="checkNumber"
+            :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronweek"
           />
         </TabPane>
 
-        <TabPane key="year" tab="年" v-if="shouldHide('year')">
+        <TabPane key="year" tab="年" v-if="shouldHide('year')" forceRender>
           <CrontabYear
             @update="updateContabValue"
             :check="checkNumber"
+            :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronyear"
           />
@@ -178,7 +188,6 @@
     },
     methods: {
       openModal() {
-        debugger;
         console.log(this.showModal);
         this.showModal = true;
       },
@@ -211,6 +220,9 @@
           obj.week +
           (obj.year == '' ? '' : ' ' + obj.year);
         return str;
+      },
+      resolveExpByName(name){
+        this.changeRadio(name,this.contabValueObj[name])
       },
       resolveExp() {
         //反解析 表达式
