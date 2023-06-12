@@ -90,13 +90,13 @@
     methods: {
       // 单选按钮值变化时
       radioChange() {
-        if (this.radioValue !== 1 && this.cron.second === '*') {
-          this.$emit('update', 'second', '0');
-        }
+        // if (this.radioValue !== 1 && this.cron.second === '*') {
+        //   this.$emit('update', 'second', '0');
+        // }
         switch (this.radioValue) {
           case 1:
             this.$emit('update', 'min', '*', 'min');
-            this.$emit('update', 'hour', '*', 'min');
+            // this.$emit('update', 'hour', '*', 'min');
             break;
           case 2:
             this.$emit('update', 'min', this.cycle01 + '-' + this.cycle02);

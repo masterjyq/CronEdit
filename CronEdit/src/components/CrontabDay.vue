@@ -110,23 +110,29 @@
     methods: {
       // 单选按钮值变化时
       radioChange() {
-        if (this.radioValue === 1) {
-          this.$emit('update', 'day', '*', 'day');
+        // if (this.radioValue === 1) {
+        //   this.$emit('update', 'day', '*', 'day');
+        //   this.$emit('update', 'week', '?', 'day');
+        //   this.$emit('update', 'mouth', '*', 'day');
+        // } else {
+        //   if (this.cron.hour === '*') {
+        //     this.$emit('update', 'hour', '0', 'day');
+        //   }
+        //   if (this.cron.min === '*') {
+        //     this.$emit('update', 'min', '0', 'day');
+        //   }
+        //   if (this.cron.second === '*') {
+        //     this.$emit('update', 'second', '0', 'day');
+        //   }
+        // }
+        // 指定天就不能指定周了
+        if(this.radioValue !== 2){
           this.$emit('update', 'week', '?', 'day');
-          this.$emit('update', 'mouth', '*', 'day');
-        } else {
-          if (this.cron.hour === '*') {
-            this.$emit('update', 'hour', '0', 'day');
-          }
-          if (this.cron.min === '*') {
-            this.$emit('update', 'min', '0', 'day');
-          }
-          if (this.cron.second === '*') {
-            this.$emit('update', 'second', '0', 'day');
-          }
         }
-
         switch (this.radioValue) {
+          case 1:
+            this.$emit('update', 'day', '*', 'day');
+            break;
           case 2:
             this.$emit('update', 'day', '?');
             break;

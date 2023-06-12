@@ -155,9 +155,9 @@
         myindex: 0,
         showModal: false,
         contabValueObj: {
-          second: '*',
-          min: '*',
-          hour: '*',
+          second: '0',
+          min: '0',
+          hour: '0',
           day: '?',
           mouth: '*',
           week: '*',
@@ -206,6 +206,7 @@
         return true;
       },
       getExp(obj) {
+        debugger;
         let str =
           obj.second +
           ' ' +
@@ -382,9 +383,9 @@
       clearCron() {
         // 还原选择项
         this.contabValueObj = {
-          second: '*',
-          min: '*',
-          hour: '*',
+          second: '0',
+          min: '0',
+          hour: '0',
           day: '?',
           mouth: '*',
           week: '*',

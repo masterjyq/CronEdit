@@ -89,24 +89,27 @@
     methods: {
       // 单选按钮值变化时
       radioChange() {
-        if (this.radioValue === 1) {
-          this.$emit('update', 'mouth', '*');
-          this.$emit('update', 'year', '*');
-        } else {
-          if (this.cron.day === '*') {
-            this.$emit('update', 'day', '0', 'mouth');
-          }
-          if (this.cron.hour === '*') {
-            this.$emit('update', 'hour', '0', 'mouth');
-          }
-          if (this.cron.min === '*') {
-            this.$emit('update', 'min', '0', 'mouth');
-          }
-          if (this.cron.second === '*') {
-            this.$emit('update', 'second', '0', 'mouth');
-          }
-        }
+        // if (this.radioValue === 1) {
+        //   this.$emit('update', 'mouth', '*');
+        //   this.$emit('update', 'year', '*');
+        // } else {
+        //   if (this.cron.day === '*') {
+        //     this.$emit('update', 'day', '0', 'mouth');
+        //   }
+        //   if (this.cron.hour === '*') {
+        //     this.$emit('update', 'hour', '0', 'mouth');
+        //   }
+        //   if (this.cron.min === '*') {
+        //     this.$emit('update', 'min', '0', 'mouth');
+        //   }
+        //   if (this.cron.second === '*') {
+        //     this.$emit('update', 'second', '0', 'mouth');
+        //   }
+        // }
         switch (this.radioValue) {
+          case 1:
+            this.$emit('update', 'mouth', '*');
+            break;
           case 2:
             this.$emit('update', 'mouth', this.cycle01 + '-' + this.cycle02);
             break;
