@@ -71,6 +71,7 @@
             :resolve="resolveExpByName"
             :cron="contabValueObj"
             ref="cronyear"
+
           />
         </TabPane>
       </Tabs>
@@ -157,10 +158,10 @@
           second: '*',
           min: '*',
           hour: '*',
-          day: '*',
+          day: '?',
           mouth: '*',
-          week: '?',
-          year: '',
+          week: '*',
+          year: '*',
         },
         contabValueRes: '',
       };
@@ -270,7 +271,6 @@
           insVlaue;
 
         if (!this.$refs[refName]) return;
-
         if (arr.includes(name)) {
           if (value === '*') {
             insVlaue = 1;
@@ -381,15 +381,14 @@
       },
       clearCron() {
         // 还原选择项
-        ('准备还原');
         this.contabValueObj = {
           second: '*',
           min: '*',
           hour: '*',
-          day: '*',
+          day: '?',
           mouth: '*',
-          week: '?',
-          year: '',
+          week: '*',
+          year: '*',
         };
         for (let j in this.contabValueObj) {
           this.changeRadio(j, this.contabValueObj[j]);

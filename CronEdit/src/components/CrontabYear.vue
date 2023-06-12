@@ -87,7 +87,7 @@
     mounted: function () {
       // 仅获取当前年份
       this.fullYear = Number(new Date().getFullYear());
-      this.resolve('week');
+      this.resolve('year');
     },
     methods: {
       // 单选按钮值变化时

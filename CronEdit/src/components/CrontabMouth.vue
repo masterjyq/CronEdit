@@ -89,7 +89,6 @@
     methods: {
       // 单选按钮值变化时
       radioChange() {
-        debugger;
         if (this.radioValue === 1) {
           this.$emit('update', 'mouth', '*');
           this.$emit('update', 'year', '*');
